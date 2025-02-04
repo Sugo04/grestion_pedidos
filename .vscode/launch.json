@@ -6,14 +6,14 @@
             "name": "Auto Mode Debug",
             "request": "launch",
             "mainClass": "ad.gestion_pedidos.hmarort.Main",
-            "projectName": "gestion_pedidos"
+            "projectName": "grestion_pedidos"
         },
         {
             "type": "java",
             "name": "Manual Mode Debug",
             "request": "launch",
             "mainClass": "ad.gestion_pedidos.hmarort.Main",
-            "projectName": "gestion_pedidos",
+            "projectName": "grestion_pedidos",
             "args": ["manual"]
         }
     ]

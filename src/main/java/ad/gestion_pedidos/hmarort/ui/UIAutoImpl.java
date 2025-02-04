@@ -111,7 +111,7 @@ public class UIAutoImpl implements UI {
 
     @Override
     public int mostrarMenu() {
-        return 0; // No necesario en modo automático
+        return 0;
     }
 
     @Override

@@ -9,6 +9,7 @@ import ad.gestion_pedidos.hmarort.models.Cliente;
 import ad.gestion_pedidos.hmarort.models.Pedido;
 import ad.gestion_pedidos.hmarort.models.ZonaEnvio;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Scanner;
 
@@ -21,13 +22,13 @@ public class UIManualImpl implements UI {
 
     public UIManualImpl() {
         DatabaseProperties properties = new DatabaseProperties.Builder()
-            .url("src/main/resources/pedidos.db")
-            .build();
+                .url("src/main/resources/pedidos.db")
+                .build();
 
         dbConfig = DatabaseConfigFactory.createConfig(DatabaseType.SQLITE, properties);
-        
+
         DAOFactory factory = DAOFactory.getDAOFactory(DatabaseType.SQLITE, dbConfig);
-        
+
         daoCliente = factory.createClienteDAO();
         daoPedido = factory.createPedidoDAO();
         daoZonaEnvio = factory.createZonaEnvioDAO();
@@ -116,15 +117,18 @@ public class UIManualImpl implements UI {
 
         System.out.print("Nuevo nombre (enter para mantener actual): ");
         String nombre = scanner.nextLine();
-        if (!nombre.isEmpty()) cliente.setNombre(nombre);
+        if (!nombre.isEmpty())
+            cliente.setNombre(nombre);
 
         System.out.print("Nuevo email (enter para mantener actual): ");
         String email = scanner.nextLine();
-        if (!email.isEmpty()) cliente.setEmail(email);
+        if (!email.isEmpty())
+            cliente.setEmail(email);
 
         System.out.print("Nuevo teléfono (enter para mantener actual): ");
         String telefono = scanner.nextLine();
-        if (!telefono.isEmpty()) cliente.setTelefono(telefono);
+        if (!telefono.isEmpty())
+            cliente.setTelefono(telefono);
 
         daoCliente.actualizarInformacionCliente(cliente);
         mostrarMensaje("Cliente modificado exitosamente");
@@ -140,41 +144,99 @@ public class UIManualImpl implements UI {
     private void listarClientes() throws Exception {
         List<Cliente> clientes = daoCliente.obtenerTodosLosClientes();
         clientes.forEach(c -> System.out.println(
-            "ID: " + c.getId() + 
-            ", Nombre: " + c.getNombre() + 
-            ", Email: " + c.getEmail()
-        ));
+                "ID: " + c.getId() +
+                        ", Nombre: " + c.getNombre() +
+                        ", Email: " + c.getEmail()));
     }
 
     @Override
     public void gestionarPedidos() throws Exception {
-        // Implementación similar a gestionarClientes()
+        System.out.println("\n--- GESTIÓN DE PEDIDOS ---");
+        System.out.println("1. Agregar Pedido");
+        System.out.println("2. Modificar Pedido");
+        System.out.println("3. Eliminar Pedido");
+        System.out.println("4. Listar Pedidos");
+        int opcion = scanner.nextInt();
+        scanner.nextLine();
+
+        switch (opcion) {
+            case 1 -> agregarPedido();
+            case 2 -> modificarPedido();
+            case 3 -> eliminarPedido();
+            case 4 -> listarPedidos();
+        }
+    }
+
+    private void agregarPedido() throws Exception {
+        System.out.print("ID de Cliente: ");
+        int idCliente = scanner.nextInt();
+        System.out.print("Importe del Pedido: ");
+        double importe = scanner.nextDouble();
+
+        Pedido pedido = new Pedido(0, LocalDate.now(), importe, idCliente);
+        daoPedido.agregarPedido(pedido);
+        mostrarMensaje("Pedido agregado exitosamente");
+    }
+
+    private void modificarPedido() throws Exception {
+        System.out.print("ID de Pedido a modificar: ");
+        int id = scanner.nextInt();
+        scanner.nextLine(); // Consumir salto de línea
+
+        Pedido pedido = daoPedido.obtenerPedidoPorId(id);
+        if (pedido == null) {
+            mostrarError("Pedido no encontrado");
+            return;
+        }
+
+        System.out.print("Nuevo importe (enter para mantener actual): ");
+        String importeStr = scanner.nextLine();
+        if (!importeStr.isEmpty()) {
+            pedido.setImporte(Double.parseDouble(importeStr));
+        }
+
+        daoPedido.actualizarPedido(pedido);
+        mostrarMensaje("Pedido modificado exitosamente");
+    }
+
+    private void eliminarPedido() throws Exception {
+        System.out.print("ID de Pedido a eliminar: ");
+        int id = scanner.nextInt();
+        daoPedido.eliminarPedido(id);
+        mostrarMensaje("Pedido eliminado exitosamente");
+    }
+
+    private void listarPedidos() throws Exception {
+        List<Pedido> pedidos = daoPedido.obtenerTodosLosPedidos();
+        pedidos.forEach(p -> System.out.println(
+                "ID: " + p.getId() +
+                        ", Fecha: " + p.getFecha() +
+                        ", Importe: " + p.getImporte() +
+                        ", Cliente ID: " + p.getIdCliente()));
     }
 
     @Override
     public void consultarZonasEnvio() throws Exception {
         List<ZonaEnvio> zonas = daoZonaEnvio.obtenerTodasLasZonas();
         zonas.forEach(z -> System.out.println(
-            "ID: " + z.getId() + 
-            ", Nombre: " + z.getNombre() + 
-            ", Precio: " + z.getPrecio()
-        ));
+                "ID: " + z.getId() +
+                        ", Nombre: " + z.getNombre() +
+                        ", Precio: " + z.getPrecio()));
     }
 
     @Override
     public void consultarPedidosCliente() throws Exception {
         System.out.print("ID de Cliente: ");
         int idCliente = scanner.nextInt();
-        
+
         List<Pedido> pedidos = daoPedido.obtenerPedidosPorCliente(idCliente);
         double totalFacturado = daoCliente.calcularFacturacionTotalCliente(idCliente);
-        
+
         System.out.println("Pedidos del Cliente:");
         pedidos.forEach(p -> System.out.println(
-            "ID: " + p.getId() + 
-            ", Fecha: " + p.getFecha() + 
-            ", Importe: " + p.getImporte()
-        ));
+                "ID: " + p.getId() +
+                        ", Fecha: " + p.getFecha() +
+                        ", Importe: " + p.getImporte()));
         System.out.println("Total Facturado: " + totalFacturado);
     }
 

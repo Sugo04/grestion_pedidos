@@ -1,0 +1,24 @@
+-classpath
+'C:/Users/34640/.m2/repository/org/xerial/sqlite-jdbc/3.48.0.0/sqlite-jdbc-3.48.0.0.jar;C:/Users/34640/.m2/repository/com/zaxxer/HikariCP/6.2.1/HikariCP-6.2.1.jar;C:/Users/34640/.m2/repository/commons-cli/commons-cli/1.5.0/commons-cli-1.5.0.jar;C:/Users/34640/.m2/repository/org/slf4j/slf4j-simple/1.7.32/slf4j-simple-1.7.32.jar;C:/Users/34640/.m2/repository/org/slf4j/slf4j-api/2.1.0-alpha1/slf4j-api-2.1.0-alpha1.jar;C:/Users/34640/.m2/repository/ch/qos/logback/logback-classic/1.5.16/logback-classic-1.5.16.jar;C:/Users/34640/.m2/repository/ch/qos/logback/logback-core/1.5.16/logback-core-1.5.16.jar'
+-encoding
+'UTF-8'
+-private
+-source
+'21'
+-sourcepath
+'C:/Users/34640/Documents/Docs/grestion_pedidos/src/main/java'
+-author
+-bottom
+'Copyright &#169; 2025. All rights reserved.'
+-charset
+'UTF-8'
+-d
+'C:/Users/34640/Documents/Docs/grestion_pedidos/docs/apidocs'
+-docencoding
+'UTF-8'
+-doctitle
+'grestion_pedidos 1.0-SNAPSHOT API'
+-use
+-version
+-windowtitle
+'grestion_pedidos 1.0-SNAPSHOT API'

@@ -1,0 +1,15 @@
+2025-02-04 18:34:10.470 [main] INFO  ad.gestion_pedidos.hmarort.Main - Iniciando aplicación de gestión de pedidos
+2025-02-04 18:34:10.487 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-02-04 18:34:10.631 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.sqlite.jdbc4.JDBC4Connection@662706a7
+2025-02-04 18:34:10.633 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-02-04 18:34:10.634 [main] INFO  a.g.h.database_config.SQLiteConfig - Iniciando inicialización de base de datos SQLite
+2025-02-04 18:34:10.653 [main] WARN  a.g.h.database_config.SQLiteConfig - Advertencia al ejecutar statement: [SQLITE_ERROR] SQL error or missing database (table Zonas_Envio already exists)
+2025-02-04 18:34:10.653 [main] WARN  a.g.h.database_config.SQLiteConfig - Advertencia al ejecutar statement: [SQLITE_CONSTRAINT_PRIMARYKEY] A PRIMARY KEY constraint failed (UNIQUE constraint failed: Zonas_Envio.id_zona)
+2025-02-04 18:34:10.654 [main] WARN  a.g.h.database_config.SQLiteConfig - Advertencia al ejecutar statement: [SQLITE_CONSTRAINT_PRIMARYKEY] A PRIMARY KEY constraint failed (UNIQUE constraint failed: Clientes.id_cliente)
+2025-02-04 18:34:10.654 [main] INFO  a.g.h.database_config.SQLiteConfig - Base de datos inicializada correctamente
+2025-02-04 18:34:10.671 [main] INFO  a.g.h.d.i.sqlite.SQLiteDAOCliente - Cliente insertado correctamente con ID: 5
+2025-02-04 18:34:10.672 [main] INFO  a.g.h.d.i.sqlite.SQLiteDAOCliente - Cliente insertado correctamente con ID: 6
+2025-02-04 18:34:10.673 [main] INFO  a.g.h.d.i.sqlite.SQLiteDAOCliente - Cliente insertado correctamente con ID: 7
+2025-02-04 18:34:10.673 [main] INFO  a.g.h.d.i.sqlite.SQLiteDAOCliente - Cliente insertado correctamente con ID: 8
+2025-02-04 18:34:10.674 [main] INFO  a.g.h.d.i.sqlite.SQLiteDAOCliente - Cliente insertado correctamente con ID: 9
+2025-02-04 18:34:10.697 [main] INFO  ad.gestion_pedidos.hmarort.Main - Aplicación finalizada exitosamente

@@ -13,6 +13,10 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * Implementación manual de la interfaz de usuario que permite la interacción
+ * directa con el usuario a través de la consola.
+ */
 public class UIManualImpl implements UI {
     private DAOCliente daoCliente;
     private DAOPedido daoPedido;
@@ -20,6 +24,10 @@ public class UIManualImpl implements UI {
     private Scanner scanner;
     private DatabaseConfig dbConfig;
 
+    /**
+     * Constructor que inicializa la configuración de la base de datos, los DAOs y
+     * el scanner.
+     */
     public UIManualImpl() {
         DatabaseProperties properties = new DatabaseProperties.Builder()
                 .url("src/main/resources/pedidos.db")
@@ -35,6 +43,9 @@ public class UIManualImpl implements UI {
         scanner = new Scanner(System.in);
     }
 
+    /**
+     * Inicia el bucle principal de interacción con el usuario.
+     */
     @Override
     public void iniciar() {
         while (true) {
@@ -56,6 +67,12 @@ public class UIManualImpl implements UI {
         }
     }
 
+    /**
+     * Muestra el menú principal y retorna la opción seleccionada por el usuario.
+     * 
+     * @return La opción seleccionada
+     * @throws Exception Si ocurre un error al leer la entrada del usuario
+     */
     @Override
     public int mostrarMenu() {
         System.out.println("\n╔═══════════════════════════╗");
@@ -71,6 +88,11 @@ public class UIManualImpl implements UI {
         return scanner.nextInt();
     }
 
+    /**
+     * Gestiona las operaciones CRUD de clientes.
+     * 
+     * @throws Exception Si ocurre un error durante la gestión de clientes
+     */
     @Override
     public void gestionarClientes() throws Exception {
         System.out.println("\n--- GESTIÓN DE CLIENTES ---");
@@ -89,6 +111,11 @@ public class UIManualImpl implements UI {
         }
     }
 
+    /**
+     * Agrega un nuevo cliente a la base de datos.
+     * 
+     * @throws Exception
+     */
     private void agregarCliente() throws Exception {
         System.out.print("Nombre: ");
         String nombre = scanner.nextLine();
@@ -104,6 +131,11 @@ public class UIManualImpl implements UI {
         mostrarMensaje("Cliente agregado exitosamente");
     }
 
+    /**
+     * Modifica un cliente existente en la base de datos.
+     * 
+     * @throws Exception
+     */
     private void modificarCliente() throws Exception {
         System.out.print("ID de Cliente a modificar: ");
         int id = scanner.nextInt();
@@ -134,6 +166,11 @@ public class UIManualImpl implements UI {
         mostrarMensaje("Cliente modificado exitosamente");
     }
 
+    /**
+     * Elimina un cliente de la base de datos.
+     * 
+     * @throws Exception
+     */
     private void eliminarCliente() throws Exception {
         System.out.print("ID de Cliente a eliminar: ");
         int id = scanner.nextInt();
@@ -141,6 +178,11 @@ public class UIManualImpl implements UI {
         mostrarMensaje("Cliente eliminado exitosamente");
     }
 
+    /**
+     * Lista todos los clientes de la base de datos.
+     * 
+     * @throws Exception
+     */
     private void listarClientes() throws Exception {
         List<Cliente> clientes = daoCliente.obtenerTodosLosClientes();
         clientes.forEach(c -> System.out.println(
@@ -149,6 +191,11 @@ public class UIManualImpl implements UI {
                         ", Email: " + c.getEmail()));
     }
 
+    /**
+     * Gestiona las operaciones CRUD de pedidos.
+     * 
+     * @throws Exception
+     */
     @Override
     public void gestionarPedidos() throws Exception {
         System.out.println("\n--- GESTIÓN DE PEDIDOS ---");
@@ -167,6 +214,11 @@ public class UIManualImpl implements UI {
         }
     }
 
+    /**
+     * Agrega un nuevo pedido a la base de datos.
+     * 
+     * @throws Exception
+     */
     private void agregarPedido() throws Exception {
         System.out.print("ID de Cliente: ");
         int idCliente = scanner.nextInt();
@@ -178,6 +230,11 @@ public class UIManualImpl implements UI {
         mostrarMensaje("Pedido agregado exitosamente");
     }
 
+    /**
+     * Modifica un pedido existente en la base de datos.
+     * 
+     * @throws Exception
+     */
     private void modificarPedido() throws Exception {
         System.out.print("ID de Pedido a modificar: ");
         int id = scanner.nextInt();
@@ -199,6 +256,11 @@ public class UIManualImpl implements UI {
         mostrarMensaje("Pedido modificado exitosamente");
     }
 
+    /**
+     * Elimina un pedido de la base de datos.
+     * 
+     * @throws Exception
+     */
     private void eliminarPedido() throws Exception {
         System.out.print("ID de Pedido a eliminar: ");
         int id = scanner.nextInt();
@@ -206,6 +268,11 @@ public class UIManualImpl implements UI {
         mostrarMensaje("Pedido eliminado exitosamente");
     }
 
+    /**
+     * Lista todos los pedidos de la base de datos.
+     * 
+     * @throws Exception
+     */
     private void listarPedidos() throws Exception {
         List<Pedido> pedidos = daoPedido.obtenerTodosLosPedidos();
         pedidos.forEach(p -> System.out.println(
@@ -215,6 +282,11 @@ public class UIManualImpl implements UI {
                         ", Cliente ID: " + p.getIdCliente()));
     }
 
+    /**
+     * Muestra información sobre las zonas de envío disponibles.
+     * 
+     * @throws Exception
+     */
     @Override
     public void consultarZonasEnvio() throws Exception {
         List<ZonaEnvio> zonas = daoZonaEnvio.obtenerTodasLasZonas();
@@ -224,6 +296,11 @@ public class UIManualImpl implements UI {
                         ", Precio: " + z.getPrecio()));
     }
 
+    /**
+     * Consulta y muestra los pedidos de un cliente específico.
+     * 
+     * @throws Exception
+     */
     @Override
     public void consultarPedidosCliente() throws Exception {
         System.out.print("ID de Cliente: ");
@@ -240,11 +317,21 @@ public class UIManualImpl implements UI {
         System.out.println("Total Facturado: " + totalFacturado);
     }
 
+    /**
+     * Muestra un mensaje en la consola.
+     * 
+     * @param mensaje El mensaje a mostrar
+     */
     @Override
     public void mostrarMensaje(String mensaje) {
         System.out.println("✅ " + mensaje);
     }
 
+    /**
+     * Muestra un mensaje de error en la consola.
+     * 
+     * @param mensaje El mensaje de error a mostrar
+     */
     @Override
     public void mostrarError(String mensaje) {
         System.err.println("❌ " + mensaje);

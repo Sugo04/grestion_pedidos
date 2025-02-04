@@ -22,11 +22,18 @@ public class SQLiteConfig implements DatabaseConfig{
     private HikariDataSource dataSource;
     private static final Logger logger = LoggerFactory.getLogger(SQLiteConfig.class);
 
+    /**
+     * Constructor que recibe la URL de la base de datos.
+     * @param url
+     */
     public SQLiteConfig(String url) {
         this.url = url;
         initializeDataSource();
     }
 
+    /**
+     * Inicializa el DataSource de HikariCP.
+     */
     private void initializeDataSource() {
         HikariConfig config = new HikariConfig();
         config.setJdbcUrl("jdbc:sqlite:" + url);
@@ -43,6 +50,9 @@ public class SQLiteConfig implements DatabaseConfig{
         initializeDatabase();
     }
 
+    /**
+     * Inicializa la base de datos SQLite.
+     */
     private void initializeDatabase() {
         logger.info("Iniciando inicialización de base de datos SQLite");
         try (Connection conn = dataSource.getConnection();
@@ -74,36 +84,57 @@ public class SQLiteConfig implements DatabaseConfig{
         }
     }
 
+    /**
+     * Obtiene una conexión a la base de datos.
+     */
     @Override
     public Connection getConnection() throws SQLException {
         return dataSource.getConnection();
     }
 
+    /**
+     * Obtiene el DataSource de la base de datos.
+     */
     @Override
     public DataSource getDataSource() {
         return dataSource;
     }
 
+    /**
+     * Obtiene la URL de la base de datos.
+     */
     @Override
     public String getUrl() {
         return url;
     }
 
+    /**
+     * Obtiene la contraseña de la base de datos.
+     */
     @Override
     public String getPassword() {
         return ""; 
     }
 
+    /**
+     * Obtiene el tamaño máximo del pool de conexiones.
+     */
     @Override
     public int getMaxPoolSize() {
         return DEFAULT_MAX_POOL_SIZE;
     }
 
+    /**
+     * Obtiene el tamaño mínimo del pool de conexiones.
+     */
     @Override
     public int getMinPoolSize() {
         return DEFAULT_MIN_POOL_SIZE;
     }
 
+    /**
+     * Cierra la conexión a la base de datos.
+     */
     @Override
     public void closeP() {
         if (dataSource != null && !dataSource.isClosed()) {
@@ -111,6 +142,9 @@ public class SQLiteConfig implements DatabaseConfig{
         }
     }
 
+    /**
+     * Obtiene el nombre de usuario de la base de datos.
+     */
     @Override
     public String getClienName() {
         return "";

@@ -14,19 +14,30 @@ import ad.gestion_pedidos.hmarort.database_config.DatabaseConfig;
 import ad.gestion_pedidos.hmarort.models.Pedido;
 import ad.gestion_pedidos.hmarort.utils.QueryUtil;
 
-public class SQLiteDAOPedido implements DAOPedido{
+public class SQLiteDAOPedido implements DAOPedido {
 
     private final DatabaseConfig dbConfig;
 
+    /**
+     * Constructor que recibe la configuración de la base de datos.
+     * 
+     * @param databaseConfig
+     */
     public SQLiteDAOPedido(DatabaseConfig databaseConfig) {
         this.dbConfig = databaseConfig;
     }
 
+    /**
+     * Agrega un nuevo pedido al sistema.
+     * 
+     * @param pedido Objeto Pedido con la información a insertar
+     * @throws Exception Si ocurre un error durante la inserción
+     */
     @Override
     public void agregarPedido(Pedido pedido) throws Exception {
         try (Connection conn = dbConfig.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(QueryUtil.INSERT_PEDIDO, 
-                     Statement.RETURN_GENERATED_KEYS)) {
+                PreparedStatement stmt = conn.prepareStatement(QueryUtil.INSERT_PEDIDO,
+                        Statement.RETURN_GENERATED_KEYS)) {
 
             stmt.setDate(1, Date.valueOf(pedido.getFecha()));
             stmt.setDouble(2, pedido.getImporte());
@@ -47,10 +58,17 @@ public class SQLiteDAOPedido implements DAOPedido{
         }
     }
 
+    /**
+     * Recupera un pedido específico por su ID.
+     * 
+     * @param id Identificador único del pedido
+     * @return Objeto Pedido si existe, null en caso contrario
+     * @throws Exception Si ocurre un error durante la consulta
+     */
     @Override
     public Pedido obtenerPedidoPorId(int id) throws Exception {
         try (Connection conn = dbConfig.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(QueryUtil.SELECT_PEDIDO_BY_ID)) {
+                PreparedStatement stmt = conn.prepareStatement(QueryUtil.SELECT_PEDIDO_BY_ID)) {
 
             stmt.setInt(1, id);
 
@@ -63,13 +81,16 @@ public class SQLiteDAOPedido implements DAOPedido{
         return null;
     }
 
+    /**
+     * Obtiene todos los pedidos registrados en el sistema.
+     */
     @Override
     public List<Pedido> obtenerTodosLosPedidos() throws Exception {
         List<Pedido> pedidos = new ArrayList<>();
 
         try (Connection conn = dbConfig.getConnection();
-             Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery(QueryUtil.SELECT_ALL_PEDIDOS)) {
+                Statement stmt = conn.createStatement();
+                ResultSet rs = stmt.executeQuery(QueryUtil.SELECT_ALL_PEDIDOS)) {
 
             while (rs.next()) {
                 pedidos.add(extractPedidoFromResultSet(rs));
@@ -79,10 +100,13 @@ public class SQLiteDAOPedido implements DAOPedido{
         return pedidos;
     }
 
+    /**
+     * Actualiza la información de un pedido existente.
+     */
     @Override
     public void actualizarPedido(Pedido pedido) throws Exception {
         try (Connection conn = dbConfig.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(QueryUtil.UPDATE_PEDIDO)) {
+                PreparedStatement stmt = conn.prepareStatement(QueryUtil.UPDATE_PEDIDO)) {
 
             stmt.setDate(1, Date.valueOf(pedido.getFecha()));
             stmt.setDouble(2, pedido.getImporte());
@@ -96,10 +120,13 @@ public class SQLiteDAOPedido implements DAOPedido{
         }
     }
 
+    /**
+     * Elimina un pedido existente del sistema.
+     */
     @Override
     public void eliminarPedido(int id) throws Exception {
         try (Connection conn = dbConfig.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(QueryUtil.DELETE_PEDIDO)) {
+                PreparedStatement stmt = conn.prepareStatement(QueryUtil.DELETE_PEDIDO)) {
 
             stmt.setInt(1, id);
 
@@ -110,12 +137,15 @@ public class SQLiteDAOPedido implements DAOPedido{
         }
     }
 
+    /**
+     * Recupera todos los pedidos asociados a un cliente específico.
+     */
     @Override
     public List<Pedido> obtenerPedidosPorCliente(int idCliente) throws Exception {
         List<Pedido> pedidos = new ArrayList<>();
 
         try (Connection conn = dbConfig.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(QueryUtil.SELECT_PEDIDOS_BY_CLIENTE)) {
+                PreparedStatement stmt = conn.prepareStatement(QueryUtil.SELECT_PEDIDOS_BY_CLIENTE)) {
 
             stmt.setInt(1, idCliente);
 
@@ -129,12 +159,15 @@ public class SQLiteDAOPedido implements DAOPedido{
         return pedidos;
     }
 
+    /**
+     * Obtiene los pedidos realizados en una fecha específica.
+     */
     @Override
     public List<Pedido> obtenerPedidosPorFecha(LocalDate fecha) throws Exception {
         List<Pedido> pedidos = new ArrayList<>();
 
         try (Connection conn = dbConfig.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(QueryUtil.SELECT_PEDIDOS_BY_FECHA)) {
+                PreparedStatement stmt = conn.prepareStatement(QueryUtil.SELECT_PEDIDOS_BY_FECHA)) {
 
             stmt.setDate(1, Date.valueOf(fecha));
 
@@ -148,11 +181,14 @@ public class SQLiteDAOPedido implements DAOPedido{
         return pedidos;
     }
 
+    /**
+     * Calcula el total facturado para un cliente específico.
+     */
     @Override
     public double calcularTotalFacturadoPorCliente(int idCliente) throws Exception {
         try (Connection conn = dbConfig.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(
-                 "SELECT SUM(importe_total) as total FROM Pedidos WHERE id_cliente = ?")) {
+                PreparedStatement stmt = conn.prepareStatement(
+                        "SELECT SUM(importe_total) as total FROM Pedidos WHERE id_cliente = ?")) {
 
             stmt.setInt(1, idCliente);
 
@@ -165,6 +201,13 @@ public class SQLiteDAOPedido implements DAOPedido{
         return 0.0;
     }
 
+    /**
+     * Extrae un objeto Pedido de un ResultSet.
+     * 
+     * @param rs
+     * @return
+     * @throws Exception
+     */
     private Pedido extractPedidoFromResultSet(ResultSet rs) throws Exception {
         Pedido pedido = new Pedido();
         pedido.setId(rs.getInt("id_pedido"));

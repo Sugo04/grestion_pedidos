@@ -16,10 +16,17 @@ import ad.gestion_pedidos.hmarort.utils.QueryUtil;
 public class SQLiteDAOZonaEnvio implements DAOZonaEnvio{
     private final DatabaseConfig databaseConfig;
 
+    /**
+     * Constructor que recibe la configuración de la base de datos.
+     * @param databaseConfig
+     */
     public SQLiteDAOZonaEnvio(DatabaseConfig databaseConfig) {
         this.databaseConfig = databaseConfig;
     }
 
+    /**
+     * Agrega una nueva zona de envío al sistema.
+     */
     @Override
     public void agregarZonaEnvio(ZonaEnvio zonaEnvio) throws Exception {
         try (Connection conn = databaseConfig.getConnection();
@@ -44,6 +51,9 @@ public class SQLiteDAOZonaEnvio implements DAOZonaEnvio{
         }
     }
 
+    /**
+     * Recupera una zona de envío específica por su ID.
+     */
     @Override
     public ZonaEnvio obtenerZonaEnvioPorId(int id) throws Exception {
         try (Connection conn = databaseConfig.getConnection();
@@ -60,6 +70,9 @@ public class SQLiteDAOZonaEnvio implements DAOZonaEnvio{
         return null;
     }
 
+    /**
+     * Obtiene todas las zonas de envío registradas en el sistema.
+     */
     @Override
     public List<ZonaEnvio> obtenerTodasLasZonas() throws Exception {
         List<ZonaEnvio> zonas = new ArrayList<>();
@@ -76,6 +89,9 @@ public class SQLiteDAOZonaEnvio implements DAOZonaEnvio{
         return zonas;
     }
 
+    /**
+     * Actualiza la información de una zona de envío existente.
+     */
     @Override
     public void actualizarZonaEnvio(ZonaEnvio zonaEnvio) throws Exception {
         try (Connection conn = databaseConfig.getConnection();
@@ -92,6 +108,9 @@ public class SQLiteDAOZonaEnvio implements DAOZonaEnvio{
         }
     }
 
+    /**
+     * Elimina una zona de envío del sistema.
+     */
     @Override
     public void eliminarZonaEnvioPorId(int id) throws Exception {
         try (Connection conn = databaseConfig.getConnection();
@@ -106,6 +125,12 @@ public class SQLiteDAOZonaEnvio implements DAOZonaEnvio{
         }
     }
 
+    /**
+     * Extrae una zona de envío de un ResultSet.
+     * @param rs
+     * @return
+     * @throws SQLException
+     */
     private ZonaEnvio extractZonaFromResultSet(ResultSet rs) throws SQLException {
         ZonaEnvio zona = new ZonaEnvio();
         zona.setId(rs.getInt("id_zona"));

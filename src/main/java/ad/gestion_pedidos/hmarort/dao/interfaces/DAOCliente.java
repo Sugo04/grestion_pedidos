@@ -56,7 +56,7 @@ public interface DAOCliente {
      * Calcula la facturación total de un cliente.
      * @param idCliente Identificador del cliente.
      * @return Monto total de facturación.
-     * @throws Exception Si ocurre un error en el cálculo.
+     * @throws Exception Si ocurre un error en el cálculo. 
      */
     double calcularFacturacionTotalCliente(int idCliente) throws Exception;
 }

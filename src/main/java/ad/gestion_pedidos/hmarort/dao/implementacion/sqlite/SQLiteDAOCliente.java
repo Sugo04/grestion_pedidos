@@ -58,7 +58,7 @@ public class SQLiteDAOCliente implements DAOCliente {
     /**
      * Busca un cliente por su ID.
      * @param id ID del cliente a buscar.
-     * @return Cliente encontrado o null si no existe.
+     * @return Cliente encontrado o null si no existe. 
      * @throws Exception Si ocurre un error en la búsqueda.
      */
     @Override

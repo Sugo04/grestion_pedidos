@@ -48,6 +48,8 @@ public class UIAutoImpl implements UI {
     }
 
     private void generarDatosAutomaticos() throws Exception {
+        System.out.println("\n[GENERACIÓN AUTOMÁTICA DE DATOS]");
+        
         // Generar zonas de envío
         List<ZonaEnvio> zonas = IntStream.range(1, 4)
             .mapToObj(i -> new ZonaEnvio(0, "Zona " + i, random.nextDouble(10, 50)))
@@ -56,6 +58,7 @@ public class UIAutoImpl implements UI {
         for (ZonaEnvio zona : zonas) {
             daoZonaEnvio.agregarZonaEnvio(zona);
         }
+        System.out.println("✓ Zonas de envío generadas");
 
         // Generar clientes
         List<Cliente> clientes = IntStream.range(1, 6)
@@ -69,6 +72,7 @@ public class UIAutoImpl implements UI {
         for (Cliente cliente : clientes) {
             daoCliente.agregarCliente(cliente);
         }
+        System.out.println("✓ Clientes generados");
 
         // Generar pedidos
         for (Cliente cliente : clientes) {
@@ -81,24 +85,26 @@ public class UIAutoImpl implements UI {
                 daoPedido.agregarPedido(pedido);
             }
         }
+        System.out.println("✓ Pedidos generados");
     }
 
     private void generarInformesAutomaticos() throws Exception {
-        mostrarMensaje("\n--- INFORME AUTOMÁTICO DE CLIENTES ---");
+        System.out.println("\n[INFORME AUTOMÁTICO]");
         List<Cliente> clientes = daoCliente.obtenerTodosLosClientes();
         
         for (Cliente cliente : clientes) {
             List<Pedido> pedidos = daoPedido.obtenerPedidosPorCliente(cliente.getId());
             double totalFacturado = daoCliente.calcularFacturacionTotalCliente(cliente.getId());
             
-            System.out.println("\nCliente: " + cliente.getNombre());
+            System.out.println("\n--- Resumen Cliente ---");
+            System.out.println("Nombre: " + cliente.getNombre());
             System.out.println("Total Pedidos: " + pedidos.size());
-            System.out.println("Total Facturado: " + totalFacturado);
+            System.out.printf("Total Facturado: %.2f €\n", totalFacturado);
             
-            pedidos.forEach(p -> System.out.println(
-                "- Pedido " + p.getId() + 
-                ", Fecha: " + p.getFecha() + 
-                ", Importe: " + p.getImporte()
+            System.out.println("Detalle de Pedidos:");
+            pedidos.forEach(p -> System.out.printf(
+                "  • Pedido %d: %s - %.2f €\n", 
+                p.getId(), p.getFecha(), p.getImporte()
             ));
         }
     }

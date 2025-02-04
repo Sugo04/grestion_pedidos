@@ -1,0 +1,6 @@
+2025-02-04 18:17:47.542 [main] INFO  ad.gestion_pedidos.hmarort.Main - Iniciando aplicación de gestión de pedidos
+2025-02-04 18:17:47.559 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-02-04 18:17:47.724 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.sqlite.jdbc4.JDBC4Connection@5495333e
+2025-02-04 18:17:47.727 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-02-04 18:17:47.727 [main] INFO  a.g.h.database_config.SQLiteConfig - Iniciando inicialización de base de datos SQLite
+2025-02-04 18:17:47.729 [main] INFO  a.g.h.database_config.SQLiteConfig - Base de datos inicializada correctamente

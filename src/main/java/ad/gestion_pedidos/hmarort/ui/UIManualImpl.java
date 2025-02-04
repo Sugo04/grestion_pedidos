@@ -20,7 +20,6 @@ public class UIManualImpl implements UI {
     private DatabaseConfig dbConfig;
 
     public UIManualImpl() {
-
         DatabaseProperties properties = new DatabaseProperties.Builder()
             .url("src/main/resources/pedidos.db")
             .build();
@@ -46,24 +45,27 @@ public class UIManualImpl implements UI {
                     case 3 -> consultarZonasEnvio();
                     case 4 -> consultarPedidosCliente();
                     case 0 -> {
-                        mostrarMensaje("Saliendo del sistema...");
+                        mostrarMensaje("\n📍 Saliendo del sistema...");
                         return;
                     }
                 }
             } catch (Exception e) {
-                mostrarError("Error: " + e.getMessage());
+                mostrarError("❌ Error: " + e.getMessage());
             }
         }
     }
 
     @Override
     public int mostrarMenu() {
-        System.out.println("\n--- SISTEMA DE GESTIÓN ---");
-        System.out.println("1. Gestionar Clientes");
-        System.out.println("2. Gestionar Pedidos");
-        System.out.println("3. Consultar Zonas de Envío");
-        System.out.println("4. Consultar Pedidos de Cliente");
-        System.out.println("0. Salir");
+        System.out.println("\n╔═══════════════════════════╗");
+        System.out.println("║   SISTEMA DE GESTIÓN      ║");
+        System.out.println("╠═══════════════════════════╣");
+        System.out.println("║ 1. Gestionar Clientes     ║");
+        System.out.println("║ 2. Gestionar Pedidos      ║");
+        System.out.println("║ 3. Consultar Zonas Envío  ║");
+        System.out.println("║ 4. Pedidos por Cliente    ║");
+        System.out.println("║ 0. Salir                  ║");
+        System.out.println("╚═══════════════════════════╝");
         System.out.print("Seleccione una opción: ");
         return scanner.nextInt();
     }
@@ -178,11 +180,11 @@ public class UIManualImpl implements UI {
 
     @Override
     public void mostrarMensaje(String mensaje) {
-        System.out.println(mensaje);
+        System.out.println("✅ " + mensaje);
     }
 
     @Override
     public void mostrarError(String mensaje) {
-        System.err.println(mensaje);
+        System.err.println("❌ " + mensaje);
     }
 }

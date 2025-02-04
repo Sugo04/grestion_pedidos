@@ -1,18 +1,20 @@
 package ad.gestion_pedidos.hmarort.dao.interfaces;
 
 import java.util.List;
-
 import ad.gestion_pedidos.hmarort.models.ZonaEnvio;
 
+/**
+ * Interfaz para la gestión de operaciones CRUD de zonas de envío.
+ */
 public interface DAOZonaEnvio {
 
-    void insert(ZonaEnvio zonaEnvio) throws Exception;
+    void agregarZonaEnvio(ZonaEnvio zonaEnvio) throws Exception;
 
-    ZonaEnvio getById(int id) throws Exception;
+    ZonaEnvio obtenerZonaEnvioPorId(int id) throws Exception;
 
-    List<ZonaEnvio> getAll() throws Exception;
+    List<ZonaEnvio> obtenerTodasLasZonas() throws Exception;
 
-    void update(ZonaEnvio zonaEnvio) throws Exception;
+    void actualizarZonaEnvio(ZonaEnvio zonaEnvio) throws Exception;
 
-    void delete(int id) throws Exception;
+    void eliminarZonaEnvioPorId(int id) throws Exception;
 }

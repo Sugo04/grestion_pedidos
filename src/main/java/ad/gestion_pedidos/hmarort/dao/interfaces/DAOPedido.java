@@ -2,24 +2,26 @@ package ad.gestion_pedidos.hmarort.dao.interfaces;
 
 import java.time.LocalDate;
 import java.util.List;
-
 import ad.gestion_pedidos.hmarort.models.Pedido;
 
+/**
+ * Interfaz para la gestión de operaciones CRUD de pedidos.
+ */
 public interface DAOPedido {
 
-    void insertarPedido(Pedido pedido) throws Exception;
+    void agregarPedido(Pedido pedido) throws Exception;
 
-    void eliminarPedido(Pedido pedido) throws Exception;
+    void eliminarPedido(int id) throws Exception;
 
-    void modificarPedido(Pedido pedido) throws Exception;
+    void actualizarPedido(Pedido pedido) throws Exception;
 
-    Pedido buscarPedido(int id) throws Exception;
+    Pedido obtenerPedidoPorId(int id) throws Exception;
 
-    List<Pedido> listarPedidos() throws Exception;
+    List<Pedido> obtenerTodosLosPedidos() throws Exception;
 
-    List<Pedido> listarPedidosPorCliente(int idCliente) throws Exception;
+    List<Pedido> obtenerPedidosPorCliente(int idCliente) throws Exception;
 
-    List<Pedido> listarPedidosPorFecha(LocalDate fecha) throws Exception;
+    List<Pedido> obtenerPedidosPorFecha(LocalDate fecha) throws Exception;
 
-    double calcularTotalPedidosPorCliente(int idCliente) throws Exception;
+    double calcularTotalFacturadoPorCliente(int idCliente) throws Exception;
 }

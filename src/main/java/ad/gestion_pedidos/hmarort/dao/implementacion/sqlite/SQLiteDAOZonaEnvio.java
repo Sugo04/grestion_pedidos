@@ -21,7 +21,7 @@ public class SQLiteDAOZonaEnvio implements DAOZonaEnvio{
     }
 
     @Override
-    public void insert(ZonaEnvio zonaEnvio) throws Exception {
+    public void agregarZonaEnvio(ZonaEnvio zonaEnvio) throws Exception {
         try (Connection conn = databaseConfig.getConnection();
              PreparedStatement stmt = conn.prepareStatement(QueryUtil.INSERT_ZONA, 
                      Statement.RETURN_GENERATED_KEYS)) {
@@ -45,7 +45,7 @@ public class SQLiteDAOZonaEnvio implements DAOZonaEnvio{
     }
 
     @Override
-    public ZonaEnvio getById(int id) throws Exception {
+    public ZonaEnvio obtenerZonaEnvioPorId(int id) throws Exception {
         try (Connection conn = databaseConfig.getConnection();
              PreparedStatement stmt = conn.prepareStatement(QueryUtil.SELECT_ZONA_BY_ID)) {
             
@@ -61,7 +61,7 @@ public class SQLiteDAOZonaEnvio implements DAOZonaEnvio{
     }
 
     @Override
-    public List<ZonaEnvio> getAll() throws Exception {
+    public List<ZonaEnvio> obtenerTodasLasZonas() throws Exception {
         List<ZonaEnvio> zonas = new ArrayList<>();
         
         try (Connection conn = databaseConfig.getConnection();
@@ -77,7 +77,7 @@ public class SQLiteDAOZonaEnvio implements DAOZonaEnvio{
     }
 
     @Override
-    public void update(ZonaEnvio zonaEnvio) throws Exception {
+    public void actualizarZonaEnvio(ZonaEnvio zonaEnvio) throws Exception {
         try (Connection conn = databaseConfig.getConnection();
              PreparedStatement stmt = conn.prepareStatement(QueryUtil.UPDATE_ZONA)) {
             
@@ -93,7 +93,7 @@ public class SQLiteDAOZonaEnvio implements DAOZonaEnvio{
     }
 
     @Override
-    public void delete(int id) throws Exception {
+    public void eliminarZonaEnvioPorId(int id) throws Exception {
         try (Connection conn = databaseConfig.getConnection();
              PreparedStatement stmt = conn.prepareStatement(QueryUtil.DELETE_ZONA)) {
             

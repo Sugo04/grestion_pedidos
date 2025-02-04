@@ -1,22 +1,62 @@
 package ad.gestion_pedidos.hmarort.dao.interfaces;
 
 import java.util.List;
-
 import ad.gestion_pedidos.hmarort.models.Cliente;
 
+/**
+ * Interfaz para la gestión de operaciones CRUD de clientes.
+ */
 public interface DAOCliente {
 
-    void insertarCliente(Cliente cliente) throws Exception;
+    /**
+     * Inserta un nuevo cliente en la base de datos.
+     * @param cliente Cliente a insertar.
+     * @throws Exception Si ocurre un error en la inserción.
+     */
+    void agregarCliente(Cliente cliente) throws Exception;
 
-    Cliente buscarCliente(int id) throws Exception;
+    /**
+     * Busca un cliente por su ID.
+     * @param id Identificador del cliente.
+     * @return Cliente encontrado o null si no existe.
+     * @throws Exception Si ocurre un error en la búsqueda.
+     */
+    Cliente obtenerClientePorId(int id) throws Exception;
 
-    List<Cliente> listarClientes() throws Exception;
+    /**
+     * Lista todos los clientes registrados.
+     * @return Lista de clientes.
+     * @throws Exception Si ocurre un error en la consulta.
+     */
+    List<Cliente> obtenerTodosLosClientes() throws Exception;
 
-    void actualizarCliente(Cliente cliente) throws Exception;
+    /**
+     * Actualiza la información de un cliente.
+     * @param cliente Cliente con la información actualizada.
+     * @throws Exception Si ocurre un error en la actualización.
+     */
+    void actualizarInformacionCliente(Cliente cliente) throws Exception;
 
-    void eliminarCliente(int id) throws Exception;
+    /**
+     * Elimina un cliente de la base de datos.
+     * @param id Identificador del cliente a eliminar.
+     * @throws Exception Si ocurre un error en la eliminación.
+     */
+    void eliminarClientePorId(int id) throws Exception;
 
-    Cliente buscarClientePorZona(int idZona) throws Exception;
+    /**
+     * Busca clientes por zona de envío.
+     * @param idZona Identificador de la zona de envío.
+     * @return Cliente encontrado o null si no existe.
+     * @throws Exception Si ocurre un error en la búsqueda.
+     */
+    List<Cliente> obtenerClientePorZona(int idZona) throws Exception;
 
-    double calcularFacturacionCliente(int idCliente) throws Exception;
+    /**
+     * Calcula la facturación total de un cliente.
+     * @param idCliente Identificador del cliente.
+     * @return Monto total de facturación.
+     * @throws Exception Si ocurre un error en el cálculo.
+     */
+    double calcularFacturacionTotalCliente(int idCliente) throws Exception;
 }

@@ -29,7 +29,7 @@ public class SQLiteDAOCliente implements DAOCliente {
      */
     public SQLiteDAOCliente(DatabaseConfig dbConfig) {
         this.dbConfig = dbConfig;
-        LOGGER.debug("ClienteDAOSQLite inicializado");
+        LOGGER.debug("SQLiteDAOCliente inicializado");
     }
 
     /**

@@ -1,7 +1,7 @@
 package ad.gestion_pedidos.hmarort.utils;
 
 public class QueryUtil {
-
+    //Zonas de envio
     public static final String INSERT_ZONA = 
         "INSERT INTO Zonas_Envio (nombre_zona, tarifa_envio) VALUES (?, ?)";
     public static final String SELECT_ZONA_BY_ID = 
@@ -12,7 +12,7 @@ public class QueryUtil {
         "UPDATE Zonas_Envio SET nombre_zona = ?, tarifa_envio = ? WHERE id_zona = ?";
     public static final String DELETE_ZONA = 
         "DELETE FROM Zonas_Envio WHERE id_zona = ?";
-
+    //Clientes
     public static final String INSERT_CLIENTE = 
         "INSERT INTO Clientes (nombre, email, telefono, id_zona) VALUES (?, ?, ?, ?)";
     public static final String SELECT_CLIENTE_BY_ID = 
@@ -27,7 +27,7 @@ public class QueryUtil {
         "SELECT * FROM Clientes WHERE id_zona = ?";
     public static final String SELECT_TOTAL_CLIENTE = 
         "SELECT SUM(importe_total) as total FROM Pedidos WHERE id_cliente = ?";
-
+    //Pedidos
     public static final String INSERT_PEDIDO = 
         "INSERT INTO Pedidos (fecha, importe_total, id_cliente) VALUES (?, ?, ?)";
     public static final String SELECT_PEDIDO_BY_ID = 

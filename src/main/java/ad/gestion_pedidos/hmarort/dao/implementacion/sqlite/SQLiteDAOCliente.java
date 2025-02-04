@@ -10,8 +10,6 @@ import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.sqlite.util.QueryUtils;
-
 import ad.gestion_pedidos.hmarort.dao.interfaces.DAOCliente;
 import ad.gestion_pedidos.hmarort.database_config.DatabaseConfig;
 import ad.gestion_pedidos.hmarort.models.Cliente;

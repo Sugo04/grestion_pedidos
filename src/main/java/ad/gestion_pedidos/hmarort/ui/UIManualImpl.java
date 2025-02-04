@@ -20,9 +20,9 @@ public class UIManualImpl implements UI {
     private DatabaseConfig dbConfig;
 
     public UIManualImpl() {
-        // Crear configuración de base de datos usando DatabaseProperties
+
         DatabaseProperties properties = new DatabaseProperties.Builder()
-            .url("pedidos.db")
+            .url("src/main/resources/pedidos.db")
             .build();
 
         dbConfig = DatabaseConfigFactory.createConfig(DatabaseType.SQLITE, properties);

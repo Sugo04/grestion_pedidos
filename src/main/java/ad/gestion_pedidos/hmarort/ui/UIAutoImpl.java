@@ -23,9 +23,8 @@ public class UIAutoImpl implements UI {
     private DatabaseConfig dbConfig;
 
     public UIAutoImpl() {
-        // Crear configuración de base de datos usando DatabaseProperties
         DatabaseProperties properties = new DatabaseProperties.Builder()
-            .url("pedidos.db")
+            .url("src/main/resources/pedidos.db")
             .build();
 
         dbConfig = DatabaseConfigFactory.createConfig(DatabaseType.SQLITE, properties);

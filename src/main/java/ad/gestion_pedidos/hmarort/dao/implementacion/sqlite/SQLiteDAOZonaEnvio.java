@@ -8,8 +8,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.sqlite.util.QueryUtils;
-
 import ad.gestion_pedidos.hmarort.dao.interfaces.DAOZonaEnvio;
 import ad.gestion_pedidos.hmarort.database_config.DatabaseConfig;
 import ad.gestion_pedidos.hmarort.models.ZonaEnvio;
@@ -62,12 +60,6 @@ public class SQLiteDAOZonaEnvio implements DAOZonaEnvio{
         return null;
     }
 
-    /**
-     * Obtiene todas las zonas en la base de datos.
-     *
-     * @return La lista de zonas
-     * @throws SQLException Si ocurre un error durante la consulta
-     */
     @Override
     public List<ZonaEnvio> getAll() throws Exception {
         List<ZonaEnvio> zonas = new ArrayList<>();
@@ -84,12 +76,6 @@ public class SQLiteDAOZonaEnvio implements DAOZonaEnvio{
         return zonas;
     }
 
-    /**
-     * Actualiza una zona en la base de datos.
-     *
-     * @param zonaEnvio La zona a actualizar
-     * @throws SQLException Si ocurre un error durante la actualización
-     */
     @Override
     public void update(ZonaEnvio zonaEnvio) throws Exception {
         try (Connection conn = databaseConfig.getConnection();
@@ -106,12 +92,6 @@ public class SQLiteDAOZonaEnvio implements DAOZonaEnvio{
         }
     }
 
-    /**
-     * Elimina una zona por su identificador.
-     *
-     * @param id El identificador de la zona a eliminar
-     * @throws SQLException Si ocurre un error durante el borrado
-     */
     @Override
     public void delete(int id) throws Exception {
         try (Connection conn = databaseConfig.getConnection();
@@ -126,13 +106,6 @@ public class SQLiteDAOZonaEnvio implements DAOZonaEnvio{
         }
     }
 
-    /**
-     * Extrae una zona desde un ResultSet.
-     *
-     * @param rs El ResultSet del que extraer la zona
-     * @return La zona extraída
-     * @throws SQLException Si ocurre un error durante la extracción
-     */
     private ZonaEnvio extractZonaFromResultSet(ResultSet rs) throws SQLException {
         ZonaEnvio zona = new ZonaEnvio();
         zona.setId(rs.getInt("id_zona"));

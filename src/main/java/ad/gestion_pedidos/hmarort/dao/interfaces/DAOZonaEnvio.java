@@ -1,6 +1,5 @@
 package ad.gestion_pedidos.hmarort.dao.interfaces;
 
-import java.sql.SQLException;
 import java.util.List;
 
 import ad.gestion_pedidos.hmarort.models.ZonaEnvio;

@@ -11,4 +11,4 @@ Escriba una aplicación con conectores (en Java, JDBC) que permita realizar lo s
 Puede implementar la interfaz como quiera, mientras sea interactiva, pero deje preparado el programa para que puedan implementarse otras distintas.
 
 
-> Hay conceptos y clases que he consultado a mi compañero Emilio Neva, debido a que me parecieron atractivas y que no había pensado por mí mismo. Un ejemplo es el uso de loggers o de desarrollar la lógica de la base de datos.
+> Hay conceptos y clases que he consultado a mi compañero Emilio Neva, debido a que me parecieron atractivas y que no había pensado por mí mismo. Un ejemplo es el uso de loggers o de desarrollar la lógica de la base de datos a tal profundidad.

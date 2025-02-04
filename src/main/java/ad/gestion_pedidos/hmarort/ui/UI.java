@@ -3,15 +3,15 @@ package ad.gestion_pedidos.hmarort.ui;
 public interface UI {
     void iniciar();
 
-    void mostrarMensaje(String mensaje);
+    void mostrarMensaje(String mensaje) throws Exception;
 
-    void mostrarError(String mensaje);
+    void mostrarError(String mensaje) throws Exception;
 
-    int mostrarMenu();
+    int mostrarMenu() throws Exception;
 
-    void gestionarClientes();
+    void gestionarClientes() throws Exception;
 
-    void gestionarPedidos();
+    void gestionarPedidos() throws Exception;
 
     void consultarZonasEnvio() throws Exception;
 

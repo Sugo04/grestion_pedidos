@@ -1,0 +1,20 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Auto Mode Debug",
+            "request": "launch",
+            "mainClass": "ad.gestion_pedidos.hmarort.Main",
+            "projectName": "gestion_pedidos"
+        },
+        {
+            "type": "java",
+            "name": "Manual Mode Debug",
+            "request": "launch",
+            "mainClass": "ad.gestion_pedidos.hmarort.Main",
+            "projectName": "gestion_pedidos",
+            "args": ["manual"]
+        }
+    ]
+}

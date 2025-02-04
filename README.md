@@ -12,3 +12,4 @@ Puede implementar la interfaz como quiera, mientras sea interactiva, pero deje p
 
 
 > Hay conceptos y clases que he consultado a mi compañero Emilio Neva, debido a que me parecieron atractivas y que no había pensado por mí mismo. Un ejemplo es el uso de loggers o de desarrollar la lógica de la base de datos a tal profundidad.
+> De hecho esta lógica inicial es la que me ha permitido orientarme adecuadamente a la hora de hacer el proyecto y ya continuar con mis propios detalles o básicamente a finalizar el programa adecuadamente. Es por ello que la estructura es esencialmente similar.
